@@ -1,5 +1,5 @@
 
-
+const {authService} = require('../services')
 
 
 const authController = {
