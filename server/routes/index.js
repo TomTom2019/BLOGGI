@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-// ROUTES
-const authRoute = require('./auth.route')
+// routes
+const authRoute = require('./auth.route');
 const userRoute = require('./user.route');
 const articlesRoute = require('./articles.route');
 
@@ -16,7 +16,7 @@ const routesIndex = [
         route:userRoute
     },
     {
-        path:'/article',
+        path:'/articles',
         route:articlesRoute
     }
 ]
@@ -26,5 +26,6 @@ routesIndex.forEach((route)=>{
     router.use(route.path,route.route);
 })
 
+module.exports = router;
 
-module.exports = router
+
