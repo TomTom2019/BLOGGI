@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const { User } = require('../models/user');
+const userService = require('./user.service');
 
 const createUser = async(email,password)=>{
    try{
@@ -18,12 +19,32 @@ const createUser = async(email,password)=>{
    }
 }
 
+
 const genAuthToken = (user) => {
     const token = user.generateAuthToken();
     return token;
 }
 
+//LOG IN
+const signInWithEmailAndPassword = async(email,password)=>{
+    try {
+        const user = await userService.findUserByEmail(email);
+        if(!user){
+            throw new Error('Sorry Wrong email');
+        }
+        /// validate password
+        if(!(await user.comparePassword(password))){
+            throw new Error('Sorry wrong password');
+        }
+        return user;
+    } catch(error){
+        throw error;
+    }
+}
+
+
 module.exports = {
     createUser,
-    genAuthToken
+    genAuthToken,
+    signInWithEmailAndPassword
 }
