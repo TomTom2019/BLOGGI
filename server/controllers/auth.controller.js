@@ -2,7 +2,7 @@ const { authService } = require('../services');
 const httpStatus = require('http-status');
 
 const authController = {
-    async register(req,res){
+    async register(req,res,next){
         try{
             const { email,password } = req.body;
             const user = await authService.createUser(email,password);
@@ -16,11 +16,11 @@ const authController = {
                 token
             })
         } catch(error){
-            res.status(httpStatus.BAD_REQUEST).send(error.message);
+            next(error)
         }
     },
     // LOG IN
-    async signin(req,res){
+    async signin(req,res,next){
         try{
             const { email,password } = req.body;
             const user = await authService.signInWithEmailAndPassword(email,password);
@@ -28,7 +28,8 @@ const authController = {
 
             res.cookie('x-access-token',token).send({ user,token})
         } catch(error){
-           res.status(httpStatus.BAD_REQUEST).send(error.message);
+           //res.status(httpStatus.BAD_REQUEST).send(error.message);
+            next(error)
         }
 }
 
