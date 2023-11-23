@@ -12,6 +12,11 @@ const routes = require('./routes');
 
 const { handleError,convertToApiError } = require('./middleware/apiError');
 
+// JWT
+const passport = require('passport');
+const { jwtStrategy } = require('./middleware/passport');
+
+
 const mongoUri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}?retryWrites=true&w=majority`;
 mongoose.connect(mongoUri)
 
@@ -21,6 +26,10 @@ app.use(bodyParser.json());
 // SANITIZE
 app.use(xss());
 app.use(mongoSanitize());
+
+// PASSPORT JWT
+app.use(passport.initialize());
+passport.use('jwt',jwtStrategy)
 
 // ROUTES
 app.use('/api',routes);
