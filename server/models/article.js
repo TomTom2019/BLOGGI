@@ -18,17 +18,14 @@ const articleSchema = mongoose.Schema({
         required: [true, 'You need a excerpt'],
         maxLength: 500,
     },
-       category:{
-        type:Schema.Types.ObjectId,
-        ref: 'Category',
-        required:true
-    },
-
+    
+  
     date: {
         type: Date,
         default: Date.now
     }
 })
+
 
 const Article = mongoose.model('Article', articleSchema);
 module.exports = { Article }

@@ -20,7 +20,7 @@ const getArticleById = async(_id,user) => {
         if(user.role === 'user'){
             throw new ApiError(httpStatus.BAD_REQUEST,'Sorry you are not allowed')
         }
-        const article = await Article.findById(_id).populate('category');
+        const article = await Article.findById(_id);
         if(!article) throw new ApiError(httpStatus.NOT_FOUND,'Article not found');
         return article;
     }catch(error){
