@@ -18,6 +18,11 @@ const articleSchema = mongoose.Schema({
         required: [true, 'You need a excerpt'],
         maxLength: 500,
     },
+       category:{
+        type:Schema.Types.ObjectId,
+        ref: 'Category',
+        required:true
+    },
 
     date: {
         type: Date,
