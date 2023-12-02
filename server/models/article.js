@@ -19,12 +19,6 @@ const articleSchema = mongoose.Schema({
         maxLength: 500,
     },
 
-  
-    category: {
-        type: Schema.Types.ObjectId,
-        ref: 'Category',
-        required: true
-    },
     date: {
         type: Date,
         default: Date.now
