@@ -4,33 +4,29 @@ require('dotenv').config();
 
 
 const articleSchema = mongoose.Schema({
-    title:{
-        type:String,
-        maxLength:100,
-        required:[true,'You need a title']
+    title: {
+        type: String,
+        maxLength: 100,
+        required: [true, 'You need a title']
     },
-    content:{
-        type:String,
-        required:[true,'You need a content']
+    content: {
+        type: String,
+        required: [true, 'You need a content']
     },
-    excerpt:{
-        type:String,
-        required:[true,'You need a excerpt'],
-        maxLength:500,
+    excerpt: {
+        type: String,
+        required: [true, 'You need a excerpt'],
+        maxLength: 500,
     },
+
   
-   
-    
-    status:{
-        type:String,
-        required:true,
-        enum:['draft','public'],
-        default:'draft',
-        index:true
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: 'Category',
+        required: true
     },
-   
-    date:{
-        type:Date,
+    date: {
+        type: Date,
         default: Date.now
     }
 })

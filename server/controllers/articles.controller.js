@@ -11,23 +11,17 @@ const articlesController = {
             next(error)
         }
     },
-    async createCategory(req,res,next){
+    async getArticleById(req,res,next){
         try{
-            const category = await articlesService.addCategory(req.body);
-            res.json(category);
+            const _id = req.params.id;
+            const article = await articlesService.getArticleById(_id,req.user);
+            res.json(article);
         } catch(error){
             next(error)
         }
     },
-    async getAllCategories(req,res,next){
-        try{
-            const categories = await articlesService.findAllCategories();
-            res.json(categories);
-        } catch(error){
-            next(error)
-        }
     }
-}
+
 
 
 module.exports = articlesController;
