@@ -37,9 +37,7 @@ const userSchema = mongoose.Schema({
         trim:true,
         maxLength:100
     },
-    age:{
-        type:Number
-    },
+  
     date:{
         type:Date,
         default: Date.now
