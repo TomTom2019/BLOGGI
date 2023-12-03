@@ -7,7 +7,7 @@ const auth = require('../middleware/auth');
 
 router.post('/',auth('createAny','articles'),addArticleValidator, articlesController.createArticle)
 
-
+// ById
 router.route('/article/:id')
 .get(auth('readAny','articles'),articlesController.getArticleById)
 
