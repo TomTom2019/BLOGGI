@@ -29,6 +29,15 @@ const articlesController = {
             next(error)
         }
     },
+     async deleteArticleById(req,res,next){
+        try{
+            const _id = req.params.id;
+            await articlesService.deleteArticleById(_id);
+            res.status(httpStatus.OK).json({action:'deleted'})
+        } catch(error){
+            next(error)
+        }
+    },
 }
 
 

@@ -42,9 +42,20 @@ const updateArticleById = async(_id,body) => {
     }
 }
 
+const deleteArticleById = async(_id) => {
+    try{
+        const article = await Article.findByIdAndRemove(_id);
+        if(!article) throw new ApiError(httpStatus.NOT_FOUND,'Article not found')
+        return article;
+    }catch(error){
+        throw error;
+    }
+}
+
 module.exports = {
 
     addArticle,
     getArticleById,
-    updateArticleById
+    updateArticleById,
+    deleteArticleById
 }
