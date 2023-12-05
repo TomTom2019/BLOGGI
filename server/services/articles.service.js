@@ -28,10 +28,23 @@ const getArticleById = async(_id,user) => {
     }
 }
 
-
+const updateArticleById = async(_id,body) => {
+    try{
+        const article = await Article.findOneAndUpdate(
+            {_id},
+            {"$set":body },
+            { new:true }
+        )
+        if(!article) throw new ApiError(httpStatus.NOT_FOUND,'Article not found')
+        return article;
+    }catch(error){
+        throw error;
+    }
+}
 
 module.exports = {
 
     addArticle,
-    getArticleById
+    getArticleById,
+    updateArticleById
 }
