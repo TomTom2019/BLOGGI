@@ -18,6 +18,13 @@ const articleSchema = mongoose.Schema({
         required: [true, 'You need a excerpt'],
         maxLength: 500,
     },
+        status:{
+        type:String,
+        required:true,
+        enum:['draft','public'],
+        default:'draft',
+        index:true
+    },
     
   
     date: {
