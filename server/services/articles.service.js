@@ -66,6 +66,28 @@ const getUsersArticleById  = async(_id) => {
     }
 }
 
+const allArticles = async(req) => {
+    ///  jsjs/sortby=_id&&order=desc&limit=3
+    const sortby = req.query.sortby || "_id";
+    const order = req.query.order || "desc";
+    const limit =  req.query.limit || 2; 
+
+    try{
+       const articles =await Article
+       .find({status:'public'})
+       .populate('')
+       .sort([
+            [sortby,order]
+       ])
+       .limit(parseInt(limit));
+        return articles;
+    }catch(error){
+        throw error;
+    }
+}
+
+
+
 
 module.exports = {
 
@@ -73,5 +95,6 @@ module.exports = {
     getArticleById,
     updateArticleById,
     deleteArticleById,
-    getUsersArticleById
+    getUsersArticleById,
+    allArticles
 }
