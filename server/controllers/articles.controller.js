@@ -64,6 +64,14 @@ const articlesController = {
         } catch(error){
             next(error)
         }
+    },
+     async adminPaginate(req,res,next){
+        try{
+            const articles = await articlesService.paginateAdminArticles(req);
+            res.json(articles);
+        } catch(error){
+            next(error)
+        }
     }
 
  }

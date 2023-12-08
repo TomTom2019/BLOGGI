@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const aggregatePaginate = require('mongoose-aggregate-paginate-v2')
 const Schema = mongoose.Schema;
 require('dotenv').config();
 
@@ -18,12 +19,12 @@ const articleSchema = mongoose.Schema({
         required: [true, 'You need a excerpt'],
         maxLength: 500,
     },
-        status:{
-        type:String,
-        required:true,
-        enum:['draft','public'],
-        default:'draft',
-        index:true
+    status: {
+        type: String,
+        required: true,
+        enum: ['draft', 'public'],
+        default: 'draft',
+        index: true
     },
     
   
@@ -32,6 +33,8 @@ const articleSchema = mongoose.Schema({
         default: Date.now
     }
 })
+
+articleSchema.plugin(aggregatePaginate);
 
 
 const Article = mongoose.model('Article', articleSchema);
