@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 
 import { Loader,errorHelper } from '../../utils/tools'
+import { registerUser, signInUser } from '../../store/actions/users';
 
 
 const Auth = () =>{
@@ -35,9 +36,11 @@ const Auth = () =>{
 
     const doHandleSubmit = (values) => {
         if(register){
+            dispatch(registerUser(values))
             /// dispatch register
         } else {
-            /// dispatch login
+            dispatch(signInUser(values))
+            //// dispatch login
         }
     }
 
