@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect,useState } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom';
@@ -43,6 +43,13 @@ const Auth = () =>{
             //// dispatch login
         }
     }
+
+
+     useEffect(()=>{
+        if(notifications && notifications.global.success){
+            navigate('/dashboard')
+        }
+    },[notifications])
 
     return(
         <>
