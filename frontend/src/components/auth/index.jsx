@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 
 import { Loader,errorHelper } from '../../utils/tools'
 import { registerUser, signInUser } from '../../store/actions/users';
-
+import PreventSingIn from '../../hoc/preventSignin';
 
 const Auth = () =>{
     const [register,setRegister] = useState(false);
@@ -52,7 +52,7 @@ const Auth = () =>{
     },[notifications])
 
     return(
-        <>
+        <PreventSingIn users={users} >
             <div className='auth_container'>
                 <h1>Autheticate</h1>
                 { users.loading ?
@@ -99,7 +99,7 @@ const Auth = () =>{
                     </Box>
                 }
             </div> 
-        </>
+        </PreventSingIn>
     )
 }
 

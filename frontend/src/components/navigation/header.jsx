@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { showToast } from '../../utils/tools'
 
 const Header = () => {
+     const users = useSelector(state=>state.users); 
     const notifications = useSelector(state=>state.notifications);
     const dispatch = useDispatch();
 
@@ -37,7 +38,7 @@ const Header = () => {
                 <Link to="/" className='navbar-brand d-flex align-items-center fredoka_ff'>
                     Bloggi
                 </Link>
-                <SideDrawer/>
+                <SideDrawer users={users}/>
             </nav>    
         </>
     )
