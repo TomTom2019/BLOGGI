@@ -4,7 +4,7 @@ import AdminLayout from "../../hoc/adminLayout";
 const Dashboard = () => {
     return(
         <AdminLayout>
-        <Outlet/>
+            <Outlet/>
         </AdminLayout>
     )
 }

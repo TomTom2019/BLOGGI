@@ -1,12 +1,10 @@
 import { AdminTitle } from '../../utils/tools'
 
 
-
-
 const DashboardMain = () => {
     return(
         <>
-          <AdminTitle title="Dashboard"/>
+            <AdminTitle title="Dashboard"/>
             Dashboard main
         </>
     )
