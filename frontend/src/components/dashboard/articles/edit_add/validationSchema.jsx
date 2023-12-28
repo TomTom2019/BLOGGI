@@ -17,8 +17,8 @@ export const validation = () => (
         .required('the content is required')
         .min(50,'That is it ? ...write some more'),
         excerpt:Yup.string()
-        .required('The title is required')
-        .min(100,'Sorry 100 max'),
+        .required('Write more please')
+        .min(20,'Sorry 20 max'),
         status:Yup.string()
         .required('The status is required'),
       

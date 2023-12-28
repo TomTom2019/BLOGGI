@@ -1,5 +1,6 @@
 import { useFormik, FieldArray, FormikProvider } from 'formik';
 import { formValues, validation } from './validationSchema';
+import WYSIWYG from '../../../../utils/form/tiptap'
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -35,6 +36,12 @@ const AddArticle = () => {
     })
 
 
+     const handleEditorState = (state) => {
+        formik.setFieldValue('content',state,true)
+    }
+
+
+
 
     return(
         
@@ -54,7 +61,10 @@ const AddArticle = () => {
                 </div>
 
                 <div className='form-group'>
-                    WYSIWYG
+                    <WYSIWYG
+                  setEditorState={(state)=>handleEditorState(state)}
+
+                    />
                 </div>
 
                 <div className='form-group'>
