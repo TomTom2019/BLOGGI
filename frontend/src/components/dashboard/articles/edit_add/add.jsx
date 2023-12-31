@@ -1,15 +1,31 @@
-import { useFormik, FieldArray, FormikProvider } from 'formik';
-import { formValues, validation } from './validationSchema';
+import {
+    useFormik,
+    FieldArray,
+    FormikProvider
+} from 'formik';
+import {
+    formValues,
+    validation
+} from './validationSchema';
 import WYSIWYG from '../../../../utils/form/tiptap'
 
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { AdminTitle, errorHelper, Loader } from '../../../../utils/tools'
+import {
+    useSelector,
+    useDispatch
+} from 'react-redux';
+import {
+    useNavigate
+} from 'react-router-dom';
+import {
+    AdminTitle,
+    errorHelper,
+    Loader
+} from '../../../../utils/tools'
 
 //MUI
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button' 
-import Divider from '@mui/material/Divider' 
+import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
 //import Chip from '@mui/material/Chip'
 //import Paper from '@mui/material/Paper'
 //import InputBase from '@mui/material/InputBase'
@@ -22,30 +38,29 @@ import InputLabel from '@mui/material/InputLabel';
 import AddIcon from '@mui/icons-material/Add';
 
 const AddArticle = () => {
-    const articles =  useSelector(state=>state.articles);
-    const dispatch =  useDispatch();
-    let navigate =  useNavigate();
+    const articles = useSelector(state => state.articles);
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     const formik = useFormik({
         enableReinitialize: true,
-        initialValues:formValues,
+        initialValues: formValues,
         validationSchema: validation,
-        onSubmit:(values)=>{
+        onSubmit: (values) => {
             console.log(values)
-        }   
+        }
     })
 
 
-     const handleEditorState = (state) => {
-        formik.setFieldValue('content',state,true)
+    const handleEditorState = (state) => {
+        formik.setFieldValue('content', state, true)
     }
 
 
 
+    return (
 
-    return(
-        
-            <>
+        <>
             <AdminTitle title="Add article"/>
             <form className='mt-3 article_form' onSubmit={formik.handleSubmit}>
 
@@ -122,7 +137,7 @@ const AddArticle = () => {
         </>
     )
 }
-        
-    
+
+
 
 export default AddArticle;

@@ -1,9 +1,11 @@
-import { AdminTitle } from '../../../utils/tools'
+import {
+    AdminTitle
+} from '../../../utils/tools'
 
 
 const AdminArticles = () => {
 
-    return(
+    return (
         <>
             <AdminTitle title="Articles"/>
             admin articles index
