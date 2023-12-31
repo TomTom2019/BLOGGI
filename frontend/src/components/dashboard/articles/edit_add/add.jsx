@@ -1,25 +1,13 @@
-import {
-    useFormik,
-    FieldArray,
-    FormikProvider
-} from 'formik';
-import {
-    formValues,
-    validation
-} from './validationSchema';
+import {useFormik,FieldArray,FormikProvider} from 'formik';
+import {formValues,validation} from './validationSchema';
 import WYSIWYG from '../../../../utils/form/tiptap'
 
-import {
-    useSelector,
-    useDispatch
-} from 'react-redux';
-import {
-    useNavigate
-} from 'react-router-dom';
-import {
-    AdminTitle,
-    errorHelper,
-    Loader
+import {useSelector,useDispatch} from 'react-redux';
+import { addArticle } from '../../../../store/actions/articles'
+
+
+import {useNavigate} from 'react-router-dom';
+import {AdminTitle,errorHelper,Loader
 } from '../../../../utils/tools'
 
 //MUI
@@ -47,7 +35,11 @@ const AddArticle = () => {
         initialValues: formValues,
         validationSchema: validation,
         onSubmit: (values) => {
-            console.log(values)
+             dispatch(addArticle(values))
+           .unwrap()
+           .then(()=>{
+                navigate('/dashboard/articles')
+                })
         }
     })
 
