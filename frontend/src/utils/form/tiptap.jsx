@@ -25,7 +25,11 @@ const Tiptap = ({setEditorState,editorContent=''}) => {
         }
     })
 
-
+  // useEffect(()=>{
+    //   if(editor){
+    //     console.log(editor.commands)
+    //   }
+    // },[editor])
 
     return(
         <>
