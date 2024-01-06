@@ -48,3 +48,46 @@ export const updateArticle = createAsyncThunk(
         }
     }
 )
+
+export const getPaginateArticles = createAsyncThunk(
+    'articles/getPaginateArticles',
+    async({page=1,limit=4,keywords=''},{dispatch})=>{
+        try{
+            const request = await axios.post(`/api/articles/admin/paginate`,{
+                page,
+                limit,
+                keywords
+            },getAuthHeader());
+            return request.data;
+        }catch(error){
+            dispatch(errorGlobal(error.response.data.message))
+            throw error;
+        }
+    }
+)
+
+export const changeStatusArticle = createAsyncThunk(
+    'articles/changeStatusArticle',
+    async({newStatus,_id},{dispatch, getState})=>{
+        try{
+            const request = await axios.patch(`/api/articles/article/${_id}`,{
+                status:newStatus
+            },getAuthHeader());
+
+            let article = request.data;
+            /// previous state
+            let state = getState().articles.adminArticles.docs;
+            /// find the position
+            let position = state.findIndex( article => article._id === _id);
+            /// We CANNOT mutate 'let state'.
+            const newState = [...state];
+            newState[position] = article;
+
+            dispatch(successGlobal('Status changed !!'));
+            return newState;
+        }catch(error){
+            dispatch(errorGlobal(error.response.data.message))
+            throw error;
+        }
+    }
+)
