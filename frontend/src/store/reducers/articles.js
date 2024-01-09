@@ -5,7 +5,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
     addArticle,
      getPaginateArticles,
-    changeStatusArticle
+    changeStatusArticle,
+    homeLoadMore
 } from '../actions/articles'
 
 export const articlesSlice = createSlice({
@@ -44,6 +45,12 @@ export const articlesSlice = createSlice({
         /// CHANGE STATUS ARTICLE
         .addCase(changeStatusArticle.fulfilled,(state,action)=>{
             state.adminArticles.docs = action.payload;
+        })
+        //.addCase(getPaginateArticles.rejected,(state,action)=>{ state.loading = false;})
+        // HOME LOAD MORE
+        .addCase(homeLoadMore.fulfilled,(state,action)=>{
+            state.homeSort.skip = action.payload.sort.skip;
+            state.articles = action.payload.newState;
         })
        
     }
