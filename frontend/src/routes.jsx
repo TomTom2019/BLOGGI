@@ -10,6 +10,7 @@ import MainLayout from './hoc/mainLayout';
 import Home from './components/home';
 import Header from './components/navigation/header';
 import Auth from './components/auth';
+import Article from './components/articles/article';
 
 import Dashboard from './components/dashboard';
 import DashboardMain from './components/dashboard/main';
@@ -56,6 +57,7 @@ const Router = () => {
                 <Route path="articles/edit/:articleId" element={<EditArticle/>}/>
               </Route>
               <Route path='/auth' element={<Auth/>}/>
+              <Route path='/articles/article/:id' element={<Article/>}/>
               <Route path='/' element={<Home/>}/>
             </Routes>
         </MainLayout>
